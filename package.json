@@ -1,0 +1,40 @@
+{
+  "name": "resin-device-status",
+  "version": "1.0.0",
+  "description": "Resin.io device status interpreter",
+  "main": "build/status.js",
+  "homepage": "https://github.com/resin-io/resin-device-status",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/resin-io/resin-device-status.git"
+  },
+  "keywords": [
+    "resin",
+    "logs",
+    "device"
+  ],
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "prepublish": "gulp build",
+    "readme": "jsdoc2md --template doc/README.hbs build/status.js > README.md"
+  },
+  "author": "Juan Cruz Viotti <juan@resin.io>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "coffee-script": "~1.8.0",
+    "gulp": "~3.8.10",
+    "gulp-coffee": "~2.2.0",
+    "gulp-coffeelint": "~0.4.0",
+    "gulp-mocha": "~2.0.0",
+    "gulp-util": "~3.0.1",
+    "jsdoc-to-markdown": "^1.1.1",
+    "mocha": "~2.0.1",
+    "mochainon": "^1.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0"
+  }
+}
