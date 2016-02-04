@@ -9,6 +9,8 @@ resin-device-status
 [![Build status](https://ci.appveyor.com/api/projects/status/2t0yxu6971bjd4xa/branch/master?svg=true)](https://ci.appveyor.com/project/resin-io/resin-device-status/branch/master)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/resin-io/chat)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/resin-device-status.svg)](https://saucelabs.com/u/resin-device-status)
+
 Role
 ----
 
