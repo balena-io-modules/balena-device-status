@@ -18,7 +18,7 @@ limitations under the License.
 # @module deviceStatus
 ###
 
-_ = require('lodash')
+find = require('lodash/find')
 
 # This is the earliest possible year since
 # Resin.io didn't exist before that.
@@ -78,19 +78,19 @@ exports.getStatus = (device) ->
 	# Check for post-provisioning needs to be first because the device
 	# may power-cycle while in this state, therefore appearing briefly as offline
 	if device.provisioning_state is 'Post-Provisioning'
-		return _.find(exports.statuses, key: exports.status.POST_PROVISIONING)
+		return find(exports.statuses, key: exports.status.POST_PROVISIONING)
 
 	lastSeenDate = new Date(device.last_seen_time)
 	if not device.is_online and lastSeenDate.getFullYear() < RESIN_CREATION_YEAR
-		return _.find(exports.statuses, key: exports.status.CONFIGURING)
+		return find(exports.statuses, key: exports.status.CONFIGURING)
 
 	if not device.is_online
-		return _.find(exports.statuses, key: exports.status.OFFLINE)
+		return find(exports.statuses, key: exports.status.OFFLINE)
 
 	if device.download_progress? and device.status is 'Downloading'
-		return _.find(exports.statuses, key: exports.status.UPDATING)
+		return find(exports.statuses, key: exports.status.UPDATING)
 
 	if device.provisioning_progress?
-		return _.find(exports.statuses, key: exports.status.CONFIGURING)
+		return find(exports.statuses, key: exports.status.CONFIGURING)
 
-	return _.find(exports.statuses, key: exports.status.IDLE)
+	return find(exports.statuses, key: exports.status.IDLE)

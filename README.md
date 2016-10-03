@@ -39,16 +39,19 @@ Documentation
     * [.getStatus(device)](#module_deviceStatus.getStatus) ⇒ <code>Promise</code>
 
 <a name="module_deviceStatus.status"></a>
+
 ### deviceStatus.status : <code>Object</code>
 **Kind**: static constant of <code>[deviceStatus](#module_deviceStatus)</code>  
 **Summary**: Map of possible device statuses  
 **Access:** public  
 <a name="module_deviceStatus.statuses"></a>
+
 ### deviceStatus.statuses : <code>Array.&lt;Object&gt;</code>
 **Kind**: static constant of <code>[deviceStatus](#module_deviceStatus)</code>  
 **Summary**: Array of device statuses along with their display names  
 **Access:** public  
 <a name="module_deviceStatus.getStatus"></a>
+
 ### deviceStatus.getStatus(device) ⇒ <code>Promise</code>
 **Kind**: static method of <code>[deviceStatus](#module_deviceStatus)</code>  
 **Summary**: Get status of a device  
@@ -81,7 +84,7 @@ Tests
 Run the test suite by doing:
 
 ```sh
-$ gulp test
+$ npm test
 ```
 
 Contribute
@@ -93,7 +96,7 @@ Contribute
 Before submitting a PR, please make sure that you include tests, and that [coffeelint](http://www.coffeelint.org/) runs without any warning:
 
 ```sh
-$ gulp lint
+$ npm run lint
 ```
 
 License
