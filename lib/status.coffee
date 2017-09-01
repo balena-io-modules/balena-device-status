@@ -31,11 +31,11 @@ RESIN_CREATION_YEAR = 2013
 # @constant
 ###
 exports.status =
-	IDLE: 'idle'
 	CONFIGURING: 'configuring'
-	UPDATING: 'updating'
+	IDLE: 'idle'
 	OFFLINE: 'offline'
 	POST_PROVISIONING: 'post-provisioning'
+	UPDATING: 'updating'
 
 ###*
 # @summary Array of device statuses along with their display names
@@ -47,11 +47,11 @@ exports.statuses = [
 
 	# The order of statuses in this list is important, as it's reflected
 	# anywhere state are displayed -- currently in the device pie-chart.
-	{ key: exports.status.IDLE, name: 'Idle' }
 	{ key: exports.status.CONFIGURING, name: 'Configuring' }
-	{ key: exports.status.UPDATING, name: 'Updating' }
+	{ key: exports.status.IDLE, name: 'Online' }
 	{ key: exports.status.OFFLINE, name: 'Offline' }
 	{ key: exports.status.POST_PROVISIONING, name: 'Post Provisioning' }
+	{ key: exports.status.UPDATING, name: 'Updating' }
 
 ]
 
