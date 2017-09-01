@@ -115,7 +115,7 @@ describe 'Status', ->
 
 			m.chai.expect(status.getStatus(device)).to.deep.equal
 				key: 'idle'
-				name: 'Idle'
+				name: 'Online'
 
 		it 'should return IDLE if is_online is true and the device was seen after 2013', ->
 			device = getDeviceMock
@@ -124,7 +124,7 @@ describe 'Status', ->
 
 			m.chai.expect(status.getStatus(device)).to.deep.equal
 				key: 'idle'
-				name: 'Idle'
+				name: 'Online'
 
 		it 'should return IDLE if is_online is true and the device was seen after 2013 and there is no download_progress', ->
 			device = getDeviceMock
@@ -134,4 +134,4 @@ describe 'Status', ->
 
 			m.chai.expect(status.getStatus(device)).to.deep.equal
 				key: 'idle'
-				name: 'Idle'
+				name: 'Online'

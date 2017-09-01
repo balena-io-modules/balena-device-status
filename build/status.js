@@ -51,7 +51,7 @@ exports.status = {
 exports.statuses = [
   {
     key: exports.status.IDLE,
-    name: 'Idle'
+    name: 'Online'
   }, {
     key: exports.status.CONFIGURING,
     name: 'Configuring'
