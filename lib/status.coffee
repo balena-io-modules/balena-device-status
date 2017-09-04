@@ -47,11 +47,11 @@ exports.statuses = [
 
 	# The order of statuses in this list is important, as it's reflected
 	# anywhere state are displayed -- currently in the device pie-chart.
-	{ key: exports.status.CONFIGURING, name: 'Configuring' }
 	{ key: exports.status.IDLE, name: 'Online' }
+	{ key: exports.status.CONFIGURING, name: 'Configuring' }
+	{ key: exports.status.UPDATING, name: 'Updating' }
 	{ key: exports.status.OFFLINE, name: 'Offline' }
 	{ key: exports.status.POST_PROVISIONING, name: 'Post Provisioning' }
-	{ key: exports.status.UPDATING, name: 'Updating' }
 
 ]
 
