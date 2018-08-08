@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "Resin.io device status interpreter",
   "main": "build/status.js",
+  "types": "typings/resin-device-status.d.ts",
   "homepage": "https://github.com/resin-io/resin-device-status",
   "repository": {
     "type": "git",
