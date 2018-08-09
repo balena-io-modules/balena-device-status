@@ -19,6 +19,7 @@ limitations under the License.
 ###
 
 find = require('lodash/find')
+maxBy = require('lodash/maxBy')
 
 # This is the earliest possible year since
 # Resin.io didn't exist before that.
@@ -80,7 +81,7 @@ exports.getStatus = (device) ->
 	if device.provisioning_state is 'Post-Provisioning'
 		return find(exports.statuses, key: exports.status.POST_PROVISIONING)
 
-	lastSeenDate = new Date(device.last_seen_time)
+	lastSeenDate = new Date(device.last_connectivity_event)
 	if not device.is_online and lastSeenDate.getFullYear() < RESIN_CREATION_YEAR
 		return find(exports.statuses, key: exports.status.CONFIGURING)
 
@@ -92,5 +93,13 @@ exports.getStatus = (device) ->
 
 	if device.provisioning_progress?
 		return find(exports.statuses, key: exports.status.CONFIGURING)
+
+	if device.current_services
+		# handle SDK v10 normalized DeviceWithServiceDetails objects
+		for own serviceName, installs of device.current_services
+			# We should only care about the latest image progress
+			install = maxBy(installs, 'id')
+			if install and install.download_progress? and install.status is 'Downloading'
+				return find(exports.statuses, key: exports.status.UPDATING)
 
 	return find(exports.statuses, key: exports.status.IDLE)

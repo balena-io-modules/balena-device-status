@@ -18,9 +18,12 @@ limitations under the License.
 /**
  * @module deviceStatus
  */
-var RESIN_CREATION_YEAR, find;
+var RESIN_CREATION_YEAR, find, maxBy,
+  hasProp = {}.hasOwnProperty;
 
 find = require('lodash/find');
+
+maxBy = require('lodash/maxBy');
 
 RESIN_CREATION_YEAR = 2013;
 
@@ -33,11 +36,11 @@ RESIN_CREATION_YEAR = 2013;
  */
 
 exports.status = {
-  IDLE: 'idle',
   CONFIGURING: 'configuring',
-  UPDATING: 'updating',
+  IDLE: 'idle',
   OFFLINE: 'offline',
-  POST_PROVISIONING: 'post-provisioning'
+  POST_PROVISIONING: 'post-provisioning',
+  UPDATING: 'updating'
 };
 
 
@@ -88,13 +91,13 @@ exports.statuses = [
  */
 
 exports.getStatus = function(device) {
-  var lastSeenDate;
+  var install, installs, lastSeenDate, ref, serviceName;
   if (device.provisioning_state === 'Post-Provisioning') {
     return find(exports.statuses, {
       key: exports.status.POST_PROVISIONING
     });
   }
-  lastSeenDate = new Date(device.last_seen_time);
+  lastSeenDate = new Date(device.last_connectivity_event);
   if (!device.is_online && lastSeenDate.getFullYear() < RESIN_CREATION_YEAR) {
     return find(exports.statuses, {
       key: exports.status.CONFIGURING
@@ -114,6 +117,19 @@ exports.getStatus = function(device) {
     return find(exports.statuses, {
       key: exports.status.CONFIGURING
     });
+  }
+  if (device.current_services) {
+    ref = device.current_services;
+    for (serviceName in ref) {
+      if (!hasProp.call(ref, serviceName)) continue;
+      installs = ref[serviceName];
+      install = maxBy(installs, 'id');
+      if (install && (install.download_progress != null) && install.status === 'Downloading') {
+        return find(exports.statuses, {
+          key: exports.status.UPDATING
+        });
+      }
+    }
   }
   return find(exports.statuses, {
     key: exports.status.IDLE
