@@ -39,6 +39,7 @@ exports.status = {
   CONFIGURING: 'configuring',
   IDLE: 'idle',
   OFFLINE: 'offline',
+  INACTIVE: 'inactive',
   POST_PROVISIONING: 'post-provisioning',
   UPDATING: 'updating'
 };
@@ -67,6 +68,9 @@ exports.statuses = [
   }, {
     key: exports.status.POST_PROVISIONING,
     name: 'Post Provisioning'
+  }, {
+    key: exports.status.INACTIVE,
+    name: 'Inactive'
   }
 ];
 
@@ -91,14 +95,20 @@ exports.statuses = [
  */
 
 exports.getStatus = function(device) {
-  var install, installs, lastSeenDate, ref, serviceName;
+  var install, installs, lastSeenDate, neverSeen, ref, serviceName;
+  if (!device.is_active) {
+    return find(exports.statuses, {
+      key: exports.status.INACTIVE
+    });
+  }
   if (device.provisioning_state === 'Post-Provisioning') {
     return find(exports.statuses, {
       key: exports.status.POST_PROVISIONING
     });
   }
   lastSeenDate = new Date(device.last_connectivity_event);
-  if (!device.is_online && lastSeenDate.getFullYear() < RESIN_CREATION_YEAR) {
+  neverSeen = lastSeenDate.getFullYear() < RESIN_CREATION_YEAR;
+  if (!device.is_online && neverSeen) {
     return find(exports.statuses, {
       key: exports.status.CONFIGURING
     });

@@ -6,6 +6,7 @@ declare module 'resin-device-status' {
 	}
 
 	export interface Device extends IHaveProgressAndStatus {
+		is_active: boolean;
 		is_online: boolean;
 		last_connectivity_event?: string;
 		provisioning_progress?: number;
@@ -19,6 +20,7 @@ declare module 'resin-device-status' {
 		CONFIGURING: 'configuring';
 		IDLE: 'idle';
 		OFFLINE: 'offline';
+		INACTIVE: 'inactive'
 		POST_PROVISIONING: 'post-provisioning';
 		UPDATING: 'updating';
 	};

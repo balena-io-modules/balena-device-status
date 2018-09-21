@@ -35,6 +35,7 @@ exports.status =
 	CONFIGURING: 'configuring'
 	IDLE: 'idle'
 	OFFLINE: 'offline'
+	INACTIVE: 'inactive'
 	POST_PROVISIONING: 'post-provisioning'
 	UPDATING: 'updating'
 
@@ -53,6 +54,7 @@ exports.statuses = [
 	{ key: exports.status.UPDATING, name: 'Updating' }
 	{ key: exports.status.OFFLINE, name: 'Offline' }
 	{ key: exports.status.POST_PROVISIONING, name: 'Post Provisioning' }
+	{ key: exports.status.INACTIVE, name: 'Inactive' }
 
 ]
 
@@ -76,13 +78,17 @@ exports.statuses = [
 ###
 exports.getStatus = (device) ->
 
-	# Check for post-provisioning needs to be first because the device
+	if not device.is_active
+		return find(exports.statuses, key: exports.status.INACTIVE)
+
+	# Check for post-provisioning needs to be before the is_online checks because the device
 	# may power-cycle while in this state, therefore appearing briefly as offline
 	if device.provisioning_state is 'Post-Provisioning'
 		return find(exports.statuses, key: exports.status.POST_PROVISIONING)
 
 	lastSeenDate = new Date(device.last_connectivity_event)
-	if not device.is_online and lastSeenDate.getFullYear() < RESIN_CREATION_YEAR
+	neverSeen = lastSeenDate.getFullYear() < RESIN_CREATION_YEAR
+	if not device.is_online and neverSeen
 		return find(exports.statuses, key: exports.status.CONFIGURING)
 
 	if not device.is_online

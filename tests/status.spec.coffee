@@ -20,6 +20,7 @@ getDeviceMock = (overrides) ->
 		device_type: 'beaglebone-black'
 		uuid: 'fdaa8ac34273568975e3d7031da1ae8f21b857a667dd7fcfbfca551808397d'
 		status: null
+		is_active: true
 		is_online: true
 		last_connectivity_event: '2014-01-01T00:00:00.000Z'
 		public_address: ''
@@ -59,6 +60,16 @@ describe 'Status', ->
 				m.chai.expect(_.isEmpty(deviceStatus.name)).to.be.false
 
 	describe '.getStatus()', ->
+
+		it 'should return INACTIVE if is_active is false and the device was not seen', ->
+			device = getDeviceMock
+				is_active: false
+				is_online: false
+				last_connectivity_event: null
+
+			m.chai.expect(status.getStatus(device)).to.deep.equal
+				key: 'inactive'
+				name: 'Inactive'
 
 		it 'should return POST_PROVISIONING if provisioning_state is Post-Provisioning', ->
 			device = getDeviceMock(provisioning_state: 'Post-Provisioning')
@@ -102,6 +113,16 @@ describe 'Status', ->
 			m.chai.expect(status.getStatus(device)).to.deep.equal
 				key: 'offline'
 				name: 'Offline'
+
+		it 'should return INACTIVE if is_active is false and the device was seen after 2013', ->
+			device = getDeviceMock
+				is_active: false
+				is_online: false
+				last_connectivity_event: '2014-01-01T00:00:00.000Z'
+
+			m.chai.expect(status.getStatus(device)).to.deep.equal
+				key: 'inactive'
+				name: 'Inactive'
 
 		it 'should return UPDATING if there is a download_progress and status is Downloading and is_online is true', ->
 			device = getDeviceMock
