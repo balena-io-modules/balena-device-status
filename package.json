@@ -1,6 +1,6 @@
 {
   "name": "resin-device-status",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Resin.io device status interpreter",
   "main": "build/status.js",
   "types": "typings/resin-device-status.d.ts",
