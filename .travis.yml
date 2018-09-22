@@ -4,6 +4,5 @@ before_install:
 node_js:
   - "8"
   - "6"
-  - "4"
 notifications:
   email: false
