@@ -9,6 +9,10 @@
     "type": "git",
     "url": "git://github.com/resin-io/resin-device-status.git"
   },
+  "files": [
+    "build/",
+    "typings/"
+  ],
   "keywords": [
     "resin",
     "logs",
