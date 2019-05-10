@@ -7,7 +7,6 @@ balena-device-status
 [![dependencies](https://david-dm.org/balena-io/balena-device-status.svg)](https://david-dm.org/balena-io/balena-device-status.svg)
 [![Build Status](https://travis-ci.org/balena-io/balena-device-status.svg?branch=master)](https://travis-ci.org/balena-io/balena-device-status)
 [![Build status](https://ci.appveyor.com/api/projects/status/2t0yxu6971bjd4xa/branch/master?svg=true)](https://ci.appveyor.com/project/resin-io/balena-device-status/branch/master)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/balena-io/chat)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/balena-device-status.svg)](https://saucelabs.com/u/balena-device-status)
 
