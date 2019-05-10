@@ -1,4 +1,4 @@
-declare module 'resin-device-status' {
+declare module 'balena-device-status' {
 
 	interface IHaveProgressAndStatus {
 		download_progress?: number;

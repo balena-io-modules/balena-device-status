@@ -1,5 +1,5 @@
 ###
-Copyright 2016 Resin.io
+Copyright 2016 Balena
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ find = require('lodash/find')
 maxBy = require('lodash/maxBy')
 
 # This is the earliest possible year since
-# Resin.io didn't exist before that.
+# Balena didn't exist before that.
 RESIN_CREATION_YEAR = 2013
 
 ###*
@@ -68,10 +68,10 @@ exports.statuses = [
 # @returns {Promise}
 #
 # @example
-# resin = require('resin-sdk')
-# deviceStatus = require('resin-device-status')
+# balena = require('balena-sdk')
+# deviceStatus = require('balena-device-status')
 #
-# resin.models.device.get('9174944').then (device) ->
+# balena.models.device.get('9174944').then (device) ->
 # 	deviceStatus.getStatus(device).then (status) ->
 # 		console.log(status.key)
 # 		console.log(status.name)
