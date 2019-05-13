@@ -4,10 +4,10 @@
   "description": "Balena device status interpreter",
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "homepage": "https://github.com/balena-io/balena-device-status",
+  "homepage": "https://github.com/balena-io-modules/balena-device-status",
   "repository": {
     "type": "git",
-    "url": "git://github.com/balena-io/balena-device-status.git"
+    "url": "git://github.com/balena-io-modules/balena-device-status.git"
   },
   "files": [
     "build/"
