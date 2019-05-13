@@ -1,6 +1,6 @@
 {
   "name": "balena-device-status",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Balena device status interpreter",
   "main": "build/status.js",
   "types": "typings/balena-device-status.d.ts",
