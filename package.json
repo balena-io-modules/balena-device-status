@@ -24,7 +24,7 @@
   "scripts": {
     "build": "npm run clean && npm run lint && tsc --project . && npm run readme",
     "clean": "rimraf build/",
-    "lint": "gulp lint && resin-lint --typescript lib/ && tsc --noEmit --project .",
+    "lint": "resin-lint tests/ && resin-lint --typescript lib/ && tsc --noEmit --project .",
     "prettify": "prettier --config ./node_modules/resin-lint/config/.prettierrc --write index.js \"lib/**/*.ts\" \"tests/**/*.ts\"",
     "test": "npm run build && npm run test-node && npm run test-browser",
     "test-node": "gulp test",
@@ -42,7 +42,6 @@
     "coffeescript": "~1.12.2",
     "gulp": "^3.8.10",
     "gulp-coffee": "^2.3.0",
-    "gulp-coffeelint": "^0.6.0",
     "gulp-mocha": "^3.0.0",
     "gulp-util": "^3.0.1",
     "husky": "^1.3.1",
