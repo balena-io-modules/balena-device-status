@@ -2,16 +2,15 @@
   "name": "balena-device-status",
   "version": "3.0.0",
   "description": "Balena device status interpreter",
-  "main": "build/status.js",
-  "types": "typings/balena-device-status.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "homepage": "https://github.com/balena-io/balena-device-status",
   "repository": {
     "type": "git",
     "url": "git://github.com/balena-io/balena-device-status.git"
   },
   "files": [
-    "build/",
-    "typings/"
+    "build/"
   ],
   "keywords": [
     "balena",
@@ -23,28 +22,40 @@
     "test": "tests"
   },
   "scripts": {
+    "build": "npm run clean && npm run lint && tsc --project . && npm run readme",
+    "clean": "rimraf build/",
+    "lint": "gulp lint && resin-lint --typescript lib/ && tsc --noEmit --project .",
+    "prettify": "prettier --config ./node_modules/resin-lint/config/.prettierrc --write index.js \"lib/**/*.ts\" \"tests/**/*.ts\"",
     "test": "npm run build && npm run test-node && npm run test-browser",
     "test-node": "gulp test",
     "test-browser": "karma start",
-    "build": "gulp build",
-    "lint": "gulp lint",
     "prepare": "npm run build",
-    "readme": "jsdoc2md --template doc/README.hbs build/status.js > README.md"
+    "readme": "jsdoc2md --template doc/README.hbs build/*.js > README.md"
   },
   "author": "Juan Cruz Viotti <juan@balena.io>",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@resin.io/types-mochainon": "^2.0.1",
+    "@types/lodash": "^4.14.121",
+    "@types/mocha": "^5.2.6",
+    "balena-config-karma": "^2.3.1",
     "coffeescript": "~1.12.2",
     "gulp": "^3.8.10",
     "gulp-coffee": "^2.3.0",
     "gulp-coffeelint": "^0.6.0",
     "gulp-mocha": "^3.0.0",
     "gulp-util": "^3.0.1",
+    "husky": "^1.3.1",
     "jsdoc-to-markdown": "^1.1.1",
     "karma": "^3.0.0",
+    "lint-staged": "^8.1.4",
     "mocha": "^5.2.0",
     "mochainon": "^2.0.0",
-    "resin-config-karma": "^2.2.0"
+    "prettier": "^1.17.0",
+    "resin-lint": "^3.0.1",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.0.2",
+    "typescript": "~3.4.0"
   },
   "dependencies": {
     "lodash": "^4.0.0"

@@ -1,6 +1,6 @@
 m = require('mochainon')
 _ = require('lodash')
-status = require('../lib/status')
+status = require('../build')
 
 
 getInstallMock = (overrides) ->
