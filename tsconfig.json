@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "ES5",
+		"outDir": "build",
+		"declaration": true,
+		"importHelpers": true,
+		"noImplicitAny": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"preserveConstEnums": true,
+		"pretty": true,
+		"sourceMap": true,
+		"strictNullChecks": true
+	},
+	"include": [
+		"lib/**/*.ts"
+	]
+}
