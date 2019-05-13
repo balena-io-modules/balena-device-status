@@ -1,15 +1,20 @@
 {
-  "name": "resin-device-status",
+  "name": "balena-device-status",
   "version": "2.1.1",
-  "description": "Resin.io device status interpreter",
+  "description": "Balena device status interpreter",
   "main": "build/status.js",
-  "types": "typings/resin-device-status.d.ts",
-  "homepage": "https://github.com/resin-io/resin-device-status",
+  "types": "typings/balena-device-status.d.ts",
+  "homepage": "https://github.com/balena-io/balena-device-status",
   "repository": {
     "type": "git",
-    "url": "git://github.com/resin-io/resin-device-status.git"
+    "url": "git://github.com/balena-io/balena-device-status.git"
   },
+  "files": [
+    "build/",
+    "typings/"
+  ],
   "keywords": [
+    "balena",
     "resin",
     "logs",
     "device"
@@ -18,15 +23,15 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "npm run test-node && npm run test-browser",
+    "test": "npm run build && npm run test-node && npm run test-browser",
     "test-node": "gulp test",
     "test-browser": "karma start",
     "build": "gulp build",
     "lint": "gulp lint",
-    "prepublish": "npm test && npm run build",
+    "prepare": "npm run build",
     "readme": "jsdoc2md --template doc/README.hbs build/status.js > README.md"
   },
-  "author": "Juan Cruz Viotti <juan@resin.io>",
+  "author": "Juan Cruz Viotti <juan@balena.io>",
   "license": "Apache-2.0",
   "devDependencies": {
     "coffeescript": "~1.12.2",
