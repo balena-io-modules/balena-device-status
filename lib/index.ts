@@ -47,6 +47,9 @@ export const status = {
 	INACTIVE: 'inactive',
 	POST_PROVISIONING: 'post-provisioning',
 	UPDATING: 'updating',
+	ORDERED: 'ordered',
+	PREPARING: 'preparing',
+	SHIPPED: 'shipped',
 } as const;
 
 /**
@@ -64,6 +67,9 @@ export const statuses: Status[] = [
 	{ key: status.OFFLINE, name: 'Offline' },
 	{ key: status.POST_PROVISIONING, name: 'Post Provisioning' },
 	{ key: status.INACTIVE, name: 'Inactive' },
+	{ key: status.ORDERED, name: 'Ordered' },
+	{ key: status.PREPARING, name: 'Preparing' },
+	{ key: status.SHIPPED, name: 'Shipped' },
 ];
 
 /**
@@ -93,6 +99,15 @@ const statusesByKey = keyBy(statuses, 'key');
  * 		console.log(status.name)
  */
 export const getStatus = (device: Device) => {
+	if (
+		device.status === 'Ordered' ||
+		device.status === 'Preparing' ||
+		(!device.is_online && device.status === 'Shipped')
+	) {
+		const currentStatus = statuses.find(s => s.name === device.status)!;
+		return currentStatus;
+	}
+
 	if (!device.is_active) {
 		return statusesByKey[status.INACTIVE];
 	}
