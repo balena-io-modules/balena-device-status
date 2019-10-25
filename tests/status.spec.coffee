@@ -61,6 +61,57 @@ describe 'Status', ->
 
 	describe '.getStatus()', ->
 
+		[
+			{ active: false, online: false }
+			{ active: false, online: true }
+			{ active: true, online: false }
+			{ active: true, online: true }
+		].forEach ({ active, online }) ->
+			it "should return ORDERED if the status is Ordered and is_active is #{active} and is_online is #{online}", ->
+				device = getDeviceMock
+					is_active: active
+					is_online: online
+					status: 'Ordered'
+
+				m.chai.expect(status.getStatus(device)).to.deep.equal
+					key: 'ordered'
+					name: 'Ordered'
+
+			it "should return PREPARING if the status is Preparing and is_active is #{active} and is_online is #{online}", ->
+				device = getDeviceMock
+					is_active: active
+					is_online: online
+					status: 'Preparing'
+
+				m.chai.expect(status.getStatus(device)).to.deep.equal
+					key: 'preparing'
+					name: 'Preparing'
+
+		[
+			{ active: false }
+			{ active: true }
+		].forEach ({ active, online }) ->
+
+			it "should return SHIPPED if the status is Shipped and is_active is #{active} and is_online is false", ->
+				device = getDeviceMock
+					is_active: true
+					is_online: false
+					status: 'Shipped'
+
+				m.chai.expect(status.getStatus(device)).to.deep.equal
+					key: 'shipped'
+					name: 'Shipped'
+
+		it 'should not return SHIPPED if the status is Shipped and is_online is true', ->
+			device = getDeviceMock
+				is_active: true
+				is_online: true
+				status: 'Shipped'
+
+			m.chai.expect(status.getStatus(device)).to.deep.equal
+				key: 'idle'
+				name: 'Online'
+
 		it 'should return INACTIVE if is_active is false and the device was not seen', ->
 			device = getDeviceMock
 				is_active: false
