@@ -1,14 +1,14 @@
 balena-device-status
 ===================
 
-> Balena device status interpreter
+**DEPRECATED** - Use the `overall_status` field on the `device` resource instead.
 
 [![npm version](https://badge.fury.io/js/balena-device-status.svg)](http://badge.fury.io/js/balena-device-status)
 [![dependencies](https://david-dm.org/balena-io-modules/balena-device-status.svg)](https://david-dm.org/balena-io-modules/balena-device-status.svg)
 [![Build Status](https://travis-ci.org/balena-io-modules/balena-device-status.svg?branch=master)](https://travis-ci.org/balena-io-modules/balena-device-status)
 [![Build status](https://ci.appveyor.com/api/projects/status/2t0yxu6971bjd4xa/branch/master?svg=true)](https://ci.appveyor.com/project/resin-io/balena-device-status/branch/master)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/balena-device-status.svg)](https://saucelabs.com/u/balena-device-status)
+> Balena device status interpreter
 
 Role
 ----
